@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/Pages/loginpage.dart';
-import 'package:gym_app/Pages/exercisespage.dart';
+import 'package:gym_app/Pages/mainpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,8 +8,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginPage(),
-        '/Treinos': (context) => const ExercisesPage(),
+        '/MainPage': (context) => const MainPage(),
       },
     );
   }

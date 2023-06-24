@@ -18,11 +18,6 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void _testaCampos() {
-    debugPrint('Usuário: ${_userController.text}');
-    debugPrint('Senha: ${_passwordController.text}');
-  }
-
   @override
   void initState() {
     _userController = TextEditingController();
@@ -88,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * 0.75, 50)),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/Treinos');
+                    Navigator.pushNamed(context, '/MainPage');
                   },
                   child: const Text(
                     'Login',
