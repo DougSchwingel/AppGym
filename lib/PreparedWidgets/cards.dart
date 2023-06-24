@@ -5,7 +5,7 @@ class GymCards extends StatefulWidget {
       : super(key: key);
 
   final String nome;
-  final Image icone;
+  final Widget icone;
 
   @override
   State<GymCards> createState() => _GymCardsState();
@@ -17,7 +17,6 @@ class _GymCardsState extends State<GymCards> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
       child: Card(
-        //color: const Color.fromRGBO(31, 27, 36, 0.5),
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.10,
@@ -29,7 +28,7 @@ class _GymCardsState extends State<GymCards> {
               ),
               title: Text(
                 widget.nome,
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
               trailing: const Icon(
                 Icons.chevron_right,
