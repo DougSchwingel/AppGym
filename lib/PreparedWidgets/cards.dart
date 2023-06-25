@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 class GymCards extends StatefulWidget {
-  const GymCards({Key? key, required this.nome, required this.icone})
-      : super(key: key);
+  const GymCards({
+    Key? key,
+    required this.nome,
+    required this.icone,
+    required this.info,
+    this.trailingIcon,
+  }) : super(key: key);
 
   final String nome;
   final Widget icone;
+  final String info;
+  final Widget? trailingIcon;
 
   @override
   State<GymCards> createState() => _GymCardsState();
@@ -22,20 +29,20 @@ class _GymCardsState extends State<GymCards> {
           height: MediaQuery.of(context).size.height * 0.10,
           child: Center(
             child: ListTile(
-              leading: SizedBox(
-                width: MediaQuery.of(context).size.height * 0.05,
-                child: widget.icone,
-              ),
-              title: Text(
-                widget.nome,
-                style: const TextStyle(fontSize: 20),
-              ),
-              trailing: const Icon(
-                Icons.chevron_right,
-                size: 50,
-                color: Colors.white,
-              ),
-            ),
+                leading: SizedBox(
+                  width: MediaQuery.of(context).size.height * 0.05,
+                  child: widget.icone,
+                ),
+                title: Text(
+                  widget.nome,
+                  style: const TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(
+                  widget.info,
+                ),
+                trailing: SizedBox(
+                    width: MediaQuery.of(context).size.height * 0.04,
+                    child: widget.trailingIcon)),
           ),
         ),
       ),

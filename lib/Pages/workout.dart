@@ -57,10 +57,12 @@ class _WorkoutPageState extends State<WorkoutPage> {
                     setState(() {
                       treinos.add(
                         GymCards(
-                          nome: 'Treino $i',
-                          icone:
-                              Image.asset('assets/icons/exercise_darkmode.png'),
-                        ),
+                            nome: 'Treino $i',
+                            info: 'Body Part',
+                            icone: Image.asset(
+                                'assets/icons/exercise_darkmode.png'),
+                            trailingIcon:
+                                Image.asset('assets/icons/open_darkmode.png')),
                       );
                       i++;
                     });

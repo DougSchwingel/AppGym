@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/PreparedWidgets/calendar.dart';
-import 'package:gym_app/PreparedWidgets/cards.dart';
+import 'package:gym_app/PreparedWidgets/classes_cards.dart';
 
 class ClassPage extends StatefulWidget {
   const ClassPage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class ClassPage extends StatefulWidget {
 class _ClassPageState extends State<ClassPage> {
   TextEditingController _searchController = TextEditingController();
   bool isSearchVisible = false;
-  List<GymCards> _aulasFuturas = [];
+  List<ClassesCard> _aulasFuturas = [];
 
   @override
   void dispose() {
@@ -40,6 +40,10 @@ class _ClassPageState extends State<ClassPage> {
               Calendar(
                 aulasFuturas: _aulasFuturas,
                 onDaySelected: _handleDaySelected,
+                onAulasFuturasChanged: () {
+                  setState(
+                      () {}); // Notifica a mudança para reconstruir a lista
+                },
               ),
               Expanded(
                 child: ListView.builder(

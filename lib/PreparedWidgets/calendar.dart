@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/Classes/calendar_event_classe.dart';
-import 'package:gym_app/PreparedWidgets/cards.dart';
+import 'package:gym_app/PreparedWidgets/classes_cards.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
-  Calendar({Key? key, required this.aulasFuturas, required this.onDaySelected});
+  Calendar({
+    Key? key,
+    required this.aulasFuturas,
+    required this.onDaySelected,
+    required this.onAulasFuturasChanged,
+  }) : super(key: key);
 
-  final List<GymCards> aulasFuturas;
+  final List<ClassesCard> aulasFuturas;
   final Function(DateTime) onDaySelected;
+  final Function() onAulasFuturasChanged;
 
   @override
   State<Calendar> createState() => _CalendarState();
 }
 
 class _CalendarState extends State<Calendar> {
+  TimeOfDay time = const TimeOfDay(hour: 8, minute: 00);
   late Map<DateTime, List<CalendarEvent>>? treinosDiarios;
   var today = DateTime.now();
 
@@ -29,6 +36,7 @@ class _CalendarState extends State<Calendar> {
       children: [
         TableCalendar(
           daysOfWeekHeight: 20,
+          rowHeight: 50,
           locale: 'pt_BR',
           calendarBuilders: CalendarBuilders(
             dowBuilder: (context, day) {
@@ -94,14 +102,30 @@ class _CalendarState extends State<Calendar> {
                   const Color.fromARGB(255, 255, 152, 0),
                 ),
               ),
-              onPressed: () {
-                widget.aulasFuturas.add(GymCards(
+              onPressed: () async {
+                TimeOfDay? newTime = await showTimePicker(
+                  context: context,
+                  initialTime: time,
+                  builder: (context, child) => MediaQuery(
+                      data: MediaQuery.of(context)
+                          .copyWith(alwaysUse24HourFormat: true),
+                      child: child!),
+                );
+
+                setState(() {
+                  if (newTime == null) {
+                    return;
+                  }
+                  time = newTime;
+
+                  widget.aulasFuturas.add(ClassesCard(
                     nome: today.day.toString(),
-                    icone: const Icon(Icons.class_)));
+                    time: newTime,
+                    icone: const Icon(Icons.class_),
+                  ));
 
-                widget.onDaySelected(today);
-
-                print('Dia selecionado: $today');
+                  widget.onAulasFuturasChanged();
+                });
               },
               child: const Text(
                 'Adicionar Aula',

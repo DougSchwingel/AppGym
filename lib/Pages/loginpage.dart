@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_app/BD/dio_client.dart';
+import 'package:gym_app/BD/exercises_dao.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -83,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * 0.75, 50)),
                   onPressed: () {
+                    ExerciseDAO.inserir();
                     Navigator.pushNamed(context, '/MainPage');
                   },
                   child: const Text(

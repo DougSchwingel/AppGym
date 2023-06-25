@@ -18,7 +18,22 @@ class DBHelper {
   static Future<void> _onCreate(Database db, int ver) async {
     debugPrint(' ********************OnCreate******************** ');
     await db.execute(
-        "CREATE TABLE aluno (id INTEGER PRIMARY KEY, matricula TEXT, nome TEXT)");
+        '''CREATE TABLE workouts (id INTEGER PRIMARY KEY,name TEXT,exerc_list INTEGER)''');
+
+    await db.execute(
+        '''CREATE TABLE exercises (id TEXT, name TEXT, gifUrl TEXT, equipment TEXT, bodyPart TEXT, target TEXT)''');
+
+    await db.execute(
+        '''CREATE TABLE exercises_list (w_id INTEGER, ex_id INTEGER)''');
+
+    await db.execute(
+        '''CREATE TABLE profile (id INTEGER PRIMARY KEY, name TEXT, height TEXT, weight TEXT)''');
+
+    await db.execute(
+        '''CREATE TABLE weights_list (p_id INTEGER PRIMARY KEY, w1 INTEGER NULL, w2 INTEGER NULL, w3 INTEGER NULL, w4 INTEGER NULL, w5 INTEGER NULL, w6 INTEGER NULL, w7 INTEGER NULL, w8 INTEGER NULL, w9 INTEGER NULL, w10 INTEGER NULL, w11 INTEGER NULL, w12 INTEGER NULL)''');
+
+    await db
+        .execute('''CREATE TABLE classes (day TEXT PRIMARY KEY, hour TEXT)''');
   }
 
   static Future<void> _onOpen(Database db) async {
