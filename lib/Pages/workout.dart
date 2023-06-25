@@ -60,7 +60,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                             nome: 'Treino $i',
                             info: 'Body Part',
                             icone: Image.asset(
-                                'assets/icons/exercise_darkmode.png'),
+                                'assets/icons/workout_darkmode.png'),
                             trailingIcon:
                                 Image.asset('assets/icons/open_darkmode.png')),
                       );

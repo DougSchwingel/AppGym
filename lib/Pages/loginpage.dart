@@ -85,8 +85,10 @@ class _LoginPageState extends State<LoginPage> {
                       foregroundColor: Colors.black,
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * 0.75, 50)),
-                  onPressed: () {
-                    ExerciseDAO.inserir();
+                  onPressed: () async {
+                    await ExerciseDAO.deletar();
+                    await ExerciseDAO.inserir();
+
                     Navigator.pushNamed(context, '/MainPage');
                   },
                   child: const Text(

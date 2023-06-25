@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/BD/exercises_dao.dart';
 import 'package:gym_app/Pages/classes.dart';
 import 'package:gym_app/Pages/evolution.dart';
 import 'package:gym_app/Pages/exercises.dart';
