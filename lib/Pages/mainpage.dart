@@ -4,6 +4,7 @@ import 'package:gym_app/Pages/classes.dart';
 import 'package:gym_app/Pages/evolution.dart';
 import 'package:gym_app/Pages/exercises.dart';
 import 'package:gym_app/Pages/workout.dart';
+import 'package:gym_app/PreparedWidgets/exercises_selector.dart';
 import 'package:gym_app/PreparedWidgets/topbar.dart';
 
 class MainPage extends StatefulWidget {

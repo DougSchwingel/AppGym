@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/BD/db_helper.dart';
 import 'package:gym_app/BD/exercises_dao.dart';
 import 'package:gym_app/PreparedWidgets/cards.dart';
 import 'package:gym_app/PreparedWidgets/exercises_selector.dart';
@@ -43,6 +44,7 @@ class _ExercisePageState extends State<ExercisePage> {
           info: count.toString(),
           icone: Image.asset('assets/icons/exercise_darkmode.png'),
           trailingIcon: Image.asset('assets/icons/open_darkmode.png'),
+          onTap: () {},
         ),
       );
     }
@@ -50,35 +52,48 @@ class _ExercisePageState extends State<ExercisePage> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
+    return FutureBuilder<void>(
+      future: DBHelper.getInstance(),
+      builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Erro ao criar o banco de dados'));
+        } else {
+          return GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
+            },
+            child: Scaffold(
+              body: Center(
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SearchBar(
+                          texto: 'Procurar Exercícios',
+                          controller: _searchController,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    ExercisesSelector(
+                      bodyparts: bParts,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
         }
       },
-      child: Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SearchBar(
-                      texto: 'Procurar Exercícios',
-                      controller: _searchController,
-                    ),
-                  ]),
-              const SizedBox(height: 20),
-              ExercisesSelector(
-                bodyparts: bParts,
-              )
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

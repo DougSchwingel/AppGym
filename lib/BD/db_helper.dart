@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/BD/exercises_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBHelper {
@@ -34,6 +35,9 @@ class DBHelper {
 
     await db
         .execute('''CREATE TABLE classes (day TEXT PRIMARY KEY, hour TEXT)''');
+
+    ExerciseDAO.deletar();
+    ExerciseDAO.inserir();
   }
 
   static Future<void> _onOpen(Database db) async {

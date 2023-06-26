@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _senhaEscondida = true;
+  bool _isLoading = false;
   late final TextEditingController _userController;
   late final TextEditingController _passwordController;
 
@@ -85,16 +86,16 @@ class _LoginPageState extends State<LoginPage> {
                       foregroundColor: Colors.black,
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * 0.75, 50)),
-                  onPressed: () async {
-                    await ExerciseDAO.deletar();
-                    await ExerciseDAO.inserir();
-
+                  onPressed: () {
                     Navigator.pushNamed(context, '/MainPage');
                   },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : const Text(
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
                 ),
                 const SizedBox(height: 10),
                 InkWell(

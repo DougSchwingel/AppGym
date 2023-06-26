@@ -41,4 +41,15 @@ class ExerciseDAO {
     var count = Sqflite.firstIntValue(result);
     return count ?? 0;
   }
+
+  static Future<void> verificarAtualizarExercicios() async {
+    int quantidadeAtual = await ExerciseDAO.getCountByBodyPart('');
+
+    List<Exercicio> exerciciosAPI = await DioClient.getExercises();
+
+    if (quantidadeAtual != exerciciosAPI.length) {
+      await ExerciseDAO.deletar();
+      await ExerciseDAO.inserir();
+    }
+  }
 }

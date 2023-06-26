@@ -7,12 +7,14 @@ class GymCards extends StatefulWidget {
     required this.icone,
     required this.info,
     this.trailingIcon,
+    this.onTap,
   }) : super(key: key);
 
   final String nome;
   final Widget icone;
   final String info;
   final Widget? trailingIcon;
+  final void Function()? onTap;
 
   @override
   State<GymCards> createState() => _GymCardsState();
@@ -29,6 +31,7 @@ class _GymCardsState extends State<GymCards> {
           height: MediaQuery.of(context).size.height * 0.10,
           child: Center(
             child: ListTile(
+                onTap: widget.onTap,
                 leading: SizedBox(
                   width: MediaQuery.of(context).size.height * 0.05,
                   child: widget.icone,

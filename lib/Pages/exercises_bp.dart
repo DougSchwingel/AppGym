@@ -4,14 +4,14 @@ import 'package:gym_app/Classes/exercicio_classe.dart';
 import 'package:gym_app/PreparedWidgets/cards.dart';
 import 'package:gym_app/PreparedWidgets/searchbar.dart';
 
-class WorkoutPage extends StatefulWidget {
-  const WorkoutPage({Key? key}) : super(key: key);
+class ExercisesBP extends StatefulWidget {
+  const ExercisesBP({Key? key}) : super(key: key);
 
   @override
-  State<WorkoutPage> createState() => _WorkoutPageState();
+  State<ExercisesBP> createState() => _ExercisesBPState();
 }
 
-class _WorkoutPageState extends State<WorkoutPage> {
+class _ExercisesBPState extends State<ExercisesBP> {
   List<GymCards> bParts = [];
   Future<List<Exercicio>> exercicios = ExerciseDAO.carregarExercicios();
   TextEditingController _searchController = TextEditingController();
