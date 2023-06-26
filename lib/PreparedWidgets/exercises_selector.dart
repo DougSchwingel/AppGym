@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/PreparedWidgets/cards.dart';
+import 'package:gym_app/PreparedWidgets/exercises_card.dart';
 
 class ExercisesSelector extends StatefulWidget {
   const ExercisesSelector({super.key, required this.bodyparts});
 
-  final List<GymCards> bodyparts;
+  final List<ExercisesCard> bodyparts;
 
   @override
   State<ExercisesSelector> createState() => _ExercisesSelectorState();

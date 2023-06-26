@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     _userController = TextEditingController();
     _passwordController = TextEditingController();
+
     super.initState();
   }
 
@@ -86,7 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                       foregroundColor: Colors.black,
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * 0.75, 50)),
-                  onPressed: () {
+                  onPressed: () async {
+                    await ExerciseDAO.deletar();
+                    ExerciseDAO.inserir();
                     Navigator.pushNamed(context, '/MainPage');
                   },
                   child: _isLoading

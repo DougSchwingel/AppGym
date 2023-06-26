@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/PreparedWidgets/cards.dart';
 import 'package:gym_app/PreparedWidgets/searchbar.dart';
+import 'package:gym_app/PreparedWidgets/workout_card.dart';
 
 class WorkoutPage extends StatefulWidget {
   const WorkoutPage({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
-  List<GymCards> treinos = [];
+  List<WorkoutCard> treinos = [];
   int i = 0;
   TextEditingController _searchController = TextEditingController();
   bool isSearchVisible = false;
@@ -56,7 +56,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   onPressed: () {
                     setState(() {
                       treinos.add(
-                        GymCards(
+                        WorkoutCard(
                             nome: 'Treino $i',
                             info: 'Body Part',
                             icone: Image.asset(

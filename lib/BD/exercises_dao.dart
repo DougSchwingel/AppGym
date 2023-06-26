@@ -29,6 +29,26 @@ class ExerciseDAO {
     return exercicios;
   }
 
+  static Future<List<Exercicio>> carregarExerciciosBP(String bodyPart) async {
+    var db = await DBHelper.getInstance();
+    List<Map<String, Object?>> resultado = await db
+        .rawQuery('SELECT *FROM exercises WHERE bodyPart = ?', [bodyPart]);
+    List<Exercicio> exercicios = resultado
+        .map((mapExercicio) => Exercicio.fromMap(mapExercicio))
+        .toList();
+    return exercicios;
+  }
+
+  static Future<List<Exercicio>> carregarExerciciosID(String id) async {
+    var db = await DBHelper.getInstance();
+    List<Map<String, Object?>> resultado =
+        await db.rawQuery('SELECT *FROM exercises WHERE id = ?', [id]);
+    List<Exercicio> exercicio = resultado
+        .map((mapExercicio) => Exercicio.fromMap(mapExercicio))
+        .toList();
+    return exercicio;
+  }
+
   static Future<void> deletar() async {
     var db = await DBHelper.getInstance();
     await db.delete('exercises');

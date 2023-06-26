@@ -17,7 +17,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     const WorkoutPage(),
-    const ExercisePage(),
+    const ExercisesPage(),
     const ClassPage(),
     const EvolutionPage(),
   ];

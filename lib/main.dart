@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/BD/exercises_dao.dart';
 import 'package:gym_app/Pages/loginpage.dart';
 import 'package:gym_app/Pages/mainpage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  initializeDateFormatting().then((_) => runApp(MyApp()));
+  initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

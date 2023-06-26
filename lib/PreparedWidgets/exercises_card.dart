@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/Pages/exercises_bp.dart';
 
-class GymCards extends StatefulWidget {
-  const GymCards({
+class ExercisesCard extends StatefulWidget {
+  const ExercisesCard({
     Key? key,
     required this.nome,
     required this.icone,
-    required this.info,
+    this.info,
     this.trailingIcon,
-    this.onTap,
+    required this.onTap,
   }) : super(key: key);
 
   final String nome;
   final Widget icone;
-  final String info;
+  final String? info;
   final Widget? trailingIcon;
-  final void Function()? onTap;
+  final void Function() onTap;
 
   @override
-  State<GymCards> createState() => _GymCardsState();
+  State<ExercisesCard> createState() => _ExercisesCardState();
 }
 
-class _GymCardsState extends State<GymCards> {
+class _ExercisesCardState extends State<ExercisesCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,9 +41,11 @@ class _GymCardsState extends State<GymCards> {
                   widget.nome,
                   style: const TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(
-                  widget.info,
-                ),
+                subtitle: widget.info != null
+                    ? Text(
+                        widget.info!,
+                      )
+                    : null,
                 trailing: SizedBox(
                     width: MediaQuery.of(context).size.height * 0.04,
                     child: widget.trailingIcon)),
