@@ -4,17 +4,19 @@ class ExercisesCard extends StatefulWidget {
   const ExercisesCard({
     Key? key,
     required this.nome,
-    required this.icone,
+    this.icone,
     this.info,
     this.trailingIcon,
-    required this.onTap,
+    this.onTap,
+    this.estado,
   }) : super(key: key);
 
   final String nome;
-  final Widget icone;
+  final bool? estado;
+  final Widget? icone;
   final String? info;
   final Widget? trailingIcon;
-  final void Function() onTap;
+  final void Function()? onTap;
 
   @override
   State<ExercisesCard> createState() => _ExercisesCardState();
@@ -32,17 +34,28 @@ class _ExercisesCardState extends State<ExercisesCard> {
           child: Center(
             child: ListTile(
                 onTap: widget.onTap,
-                leading: SizedBox(
-                  width: MediaQuery.of(context).size.height * 0.05,
-                  child: widget.icone,
-                ),
-                title: Text(
-                  widget.nome,
-                  style: const TextStyle(fontSize: 20),
-                ),
+                leading: widget.estado != false
+                    ? SizedBox(
+                        width: MediaQuery.of(context).size.height * 0.05,
+                        child: widget.icone,
+                      )
+                    : SizedBox(
+                        width: MediaQuery.of(context).size.height * 0.05,
+                        child: const Icon(Icons.check),
+                      ),
+                title: widget.info != null
+                    ? Text(
+                        widget.nome,
+                        style: const TextStyle(fontSize: 17),
+                      )
+                    : Text(
+                        widget.nome,
+                        style: const TextStyle(fontSize: 20),
+                      ),
                 subtitle: widget.info != null
                     ? Text(
                         widget.info!,
+                        style: TextStyle(fontSize: 13),
                       )
                     : null,
                 trailing: SizedBox(

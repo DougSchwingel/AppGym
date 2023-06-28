@@ -18,7 +18,7 @@ class DBHelper {
   static Future<void> _onCreate(Database db, int ver) async {
     debugPrint(' ********************OnCreate******************** ');
     await db.execute(
-        '''CREATE TABLE workouts (id INTEGER PRIMARY KEY,name TEXT,exerc_list INTEGER)''');
+        '''CREATE TABLE workouts (id INTEGER, name TEXT, info TEXT)''');
 
     await db.execute(
         '''CREATE TABLE exercises (id TEXT, name TEXT, gifUrl TEXT, equipment TEXT, bodyPart TEXT, target TEXT)''');
@@ -45,12 +45,10 @@ class DBHelper {
   static Future<void> _onUpgrade(Database db, int oVer, int nVer) async {
     debugPrint(
         ' ********************Fazendo upgrade da versão: $oVer para a versão $nVer******************** ');
-    //db.execute("");
   }
 
   static Future<void> _onDowngrade(Database db, int oVer, int nVer) async {
     debugPrint(
         ' ********************Fazendo downgrade da versão: $oVer para a versão $nVer******************** ');
-    //db.execute("");
   }
 }

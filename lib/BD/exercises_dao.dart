@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:gym_app/BD/db_helper.dart';
 import 'package:gym_app/BD/dio_client.dart';
-import 'package:gym_app/Classes/exercicio_classe.dart';
+import 'package:gym_app/Classes/exercicio_class.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ExerciseDAO {
-  static Future<void> inserir() async {
+  static Future<void> insert() async {
     var exerc = await DioClient.getExercises();
     int i = 0;
     var db = await DBHelper.getInstance();
@@ -20,36 +20,46 @@ class ExerciseDAO {
     log(i.toString());
   }
 
-  static Future<List<Exercicio>> carregarExercicios() async {
+  static Future<List<Exercise>> loadExercises() async {
     var db = await DBHelper.getInstance();
     List<Map<String, Object?>> resultado = await db.query('exercises');
-    List<Exercicio> exercicios = resultado
-        .map((mapExercicio) => Exercicio.fromMap(mapExercicio))
+    List<Exercise> exercicios = resultado
+        .map((mapExercicio) => Exercise.fromMap(mapExercicio))
         .toList();
     return exercicios;
   }
 
-  static Future<List<Exercicio>> carregarExerciciosBP(String bodyPart) async {
+  static Future<List<Exercise>> loadExercisesByBP(String bodyPart) async {
     var db = await DBHelper.getInstance();
     List<Map<String, Object?>> resultado = await db
         .rawQuery('SELECT *FROM exercises WHERE bodyPart = ?', [bodyPart]);
-    List<Exercicio> exercicios = resultado
-        .map((mapExercicio) => Exercicio.fromMap(mapExercicio))
+    List<Exercise> exercicios = resultado
+        .map((mapExercicio) => Exercise.fromMap(mapExercicio))
         .toList();
     return exercicios;
   }
 
-  static Future<List<Exercicio>> carregarExerciciosID(String id) async {
+  static Future<List<Exercise>> loadExercisesByID(String id) async {
     var db = await DBHelper.getInstance();
     List<Map<String, Object?>> resultado =
         await db.rawQuery('SELECT *FROM exercises WHERE id = ?', [id]);
-    List<Exercicio> exercicio = resultado
-        .map((mapExercicio) => Exercicio.fromMap(mapExercicio))
+    List<Exercise> exercicio = resultado
+        .map((mapExercicio) => Exercise.fromMap(mapExercicio))
         .toList();
     return exercicio;
   }
 
-  static Future<void> deletar() async {
+  static Future<List<Exercise>> loadExercisesByName(String nome) async {
+    var db = await DBHelper.getInstance();
+    List<Map<String, Object?>> resultado =
+        await db.rawQuery('SELECT *FROM exercises WHERE name = ?', [nome]);
+    List<Exercise> exercicio = resultado
+        .map((mapExercicio) => Exercise.fromMap(mapExercicio))
+        .toList();
+    return exercicio;
+  }
+
+  static Future<void> delete() async {
     var db = await DBHelper.getInstance();
     await db.delete('exercises');
   }
@@ -62,14 +72,14 @@ class ExerciseDAO {
     return count ?? 0;
   }
 
-  static Future<void> verificarAtualizarExercicios() async {
+  static Future<void> uptadeExercises() async {
     int quantidadeAtual = await ExerciseDAO.getCountByBodyPart('');
 
-    List<Exercicio> exerciciosAPI = await DioClient.getExercises();
+    List<Exercise> exerciciosAPI = await DioClient.getExercises();
 
     if (quantidadeAtual != exerciciosAPI.length) {
-      await ExerciseDAO.deletar();
-      await ExerciseDAO.inserir();
+      await ExerciseDAO.delete();
+      await ExerciseDAO.insert();
     }
   }
 }

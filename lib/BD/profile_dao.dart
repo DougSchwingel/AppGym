@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:gym_app/BD/db_helper.dart';
-import 'package:gym_app/Classes/profile_info.dart';
+import 'package:gym_app/Classes/profile_info_class.dart';
 
 class ProfileDAO {
-  static Future<void> inserir(int id, double weight) async {
+  static Future<void> insert(int id, double weight) async {
     var db = await DBHelper.getInstance();
 
     DateTime now = DateTime.now();
@@ -20,7 +20,7 @@ class ProfileDAO {
     );
   }
 
-  static Future<List<ProfileInfo>> carregarPesos() async {
+  static Future<List<ProfileInfo>> loadWeights() async {
     var db = await DBHelper.getInstance();
     List<Map<String, Object?>> resultado = await db.query('weights_list');
     List<ProfileInfo> profile =
@@ -28,7 +28,7 @@ class ProfileDAO {
     return profile;
   }
 
-  static Future<List<ProfileInfo>> printarPesos() async {
+  static Future<List<ProfileInfo>> showWeights() async {
     var db = await DBHelper.getInstance();
     List<Map<String, Object?>> resultado = await db.query('weights_list');
     List<ProfileInfo> profile =

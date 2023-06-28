@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/Classes/exercicio_class.dart';
 import 'package:gym_app/Pages/exercises_bp.dart';
 
 class WorkoutCard extends StatefulWidget {
@@ -7,12 +8,16 @@ class WorkoutCard extends StatefulWidget {
     required this.nome,
     required this.icone,
     required this.info,
+    required this.wExer,
     this.trailingIcon,
+    required this.id,
   }) : super(key: key);
 
   final String nome;
   final Widget icone;
   final String info;
+  final int id;
+  final List<Exercise> wExer;
   final Widget? trailingIcon;
 
   @override

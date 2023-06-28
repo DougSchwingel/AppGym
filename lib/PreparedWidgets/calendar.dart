@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/Classes/calendar_event_classe.dart';
+import 'package:gym_app/Classes/calendar_event_class.dart';
 import 'package:gym_app/PreparedWidgets/classes_cards.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
-  Calendar({
+  const Calendar({
     Key? key,
     required this.aulasFuturas,
     required this.onDaySelected,
@@ -37,9 +37,12 @@ class _CalendarState extends State<Calendar> {
         TableCalendar(
           daysOfWeekHeight: 20,
           rowHeight: 50,
-          locale: 'pt_BR',
+          locale:
+              'pt_BR', //Traduz os meses (traduz os dias também, mas personaliza-los é o mesmo processo de traduzi-los, não vale a pena)
+
           calendarBuilders: CalendarBuilders(
             dowBuilder: (context, day) {
+              //Builder dos dias
               String dayName;
               if (day.weekday == DateTime.sunday) {
                 dayName = 'dom';
@@ -68,17 +71,23 @@ class _CalendarState extends State<Calendar> {
               );
             },
           ),
+
+          //Definiçõs básicas do calendário
           focusedDay: today,
           firstDay: DateTime.utc(2022, DateTime.now().month),
           lastDay: DateTime.utc(2024, DateTime.now().month),
           startingDayOfWeek: StartingDayOfWeek.sunday,
+
           headerStyle: const HeaderStyle(
             headerPadding: EdgeInsets.only(top: 0, bottom: 4),
             formatButtonVisible: false,
             titleCentered: true,
           ),
-          selectedDayPredicate: (day) => isSameDay(day, today),
+
+          selectedDayPredicate: (day) =>
+              isSameDay(day, today), //Função pra marcar o dia
           onDaySelected: _selectDay,
+
           calendarStyle: const CalendarStyle(
             todayDecoration: BoxDecoration(
               color: Colors.grey,
@@ -102,6 +111,7 @@ class _CalendarState extends State<Calendar> {
                   const Color.fromARGB(255, 255, 152, 0),
                 ),
               ),
+              //Mostra roda de seleção de horários
               onPressed: () async {
                 TimeOfDay? newTime = await showTimePicker(
                   context: context,
@@ -112,31 +122,64 @@ class _CalendarState extends State<Calendar> {
                       child: child!),
                 );
 
-                setState(() {
-                  if (newTime == null) {
-                    return;
-                  }
-                  time = newTime;
+                setState(
+                  () {
+                    if (newTime == null) {
+                      return;
+                    }
+                    time = newTime;
 
-                  widget.aulasFuturas.add(ClassesCard(
-                    nome: today.day.toString(),
-                    time: newTime,
-                    icone: const Icon(Icons.class_),
-                  ));
-
-                  widget.onAulasFuturasChanged();
-                });
+                    widget.aulasFuturas.add(
+                      //Criando card de aula
+                      ClassesCard(
+                        nome: today.day.toString(),
+                        time: newTime,
+                        icone: const Icon(Icons.class_),
+                        trailingIcon:
+                            Image.asset('assets/icons/open_darkmode.png'),
+                        button1: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                String aux = today.day.toString();
+                                for (int i = 0;
+                                    i < widget.aulasFuturas.length;
+                                    i++) {
+                                  if (widget.aulasFuturas[i].nome == aux) {
+                                    widget.aulasFuturas
+                                        .remove(widget.aulasFuturas[i]);
+                                  }
+                                  Navigator.pop(context);
+                                }
+                              });
+                            },
+                            child: const SizedBox(
+                              child: Text(
+                                'Excluir',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            )),
+                      ),
+                    );
+                    widget.onAulasFuturasChanged(); //Atualiza a lista
+                  },
+                );
               },
-              child: const Text(
-                'Adicionar Aula',
-                style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w800,
+
+              child: const FittedBox(
+                child: Text(
+                  'Adicionar Aula',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
             ),
           ),
+        ),
+        const SizedBox(
+          height: 5,
         ),
       ],
     );

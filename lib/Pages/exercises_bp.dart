@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/BD/exercises_dao.dart';
-import 'package:gym_app/Classes/exercicio_classe.dart';
+import 'package:gym_app/Classes/exercicio_class.dart';
 import 'package:gym_app/Pages/exerciseinfo_page.dart';
 import 'package:gym_app/PreparedWidgets/exercises_card.dart';
 import 'package:gym_app/PreparedWidgets/return_button.dart';
@@ -18,7 +18,6 @@ class ExercisesBP extends StatefulWidget {
 
 class _ExercisesBPState extends State<ExercisesBP> {
   List<ExercisesCard> bParts = [];
-  Future<List<Exercicio>> exercicios = ExerciseDAO.carregarExercicios();
   TextEditingController _searchController = TextEditingController();
   bool isSearchVisible = false;
 
@@ -29,13 +28,13 @@ class _ExercisesBPState extends State<ExercisesBP> {
   }
 
   Future<void> loadBodyPartCounts() async {
-    List<Exercicio> listaExercicios =
-        await ExerciseDAO.carregarExerciciosBP(widget.bodypart);
-    for (Exercicio exer in listaExercicios) {
+    List<Exercise> listaExercicios =
+        await ExerciseDAO.loadExercisesByBP(widget.bodypart);
+    for (Exercise exer in listaExercicios) {
       bParts.add(
         ExercisesCard(
-          nome: exer.name,
-          info: exer.equipment,
+          nome: exer.name.toUpperCase(),
+          info: exer.equipment.toUpperCase(),
           icone: Image.asset('assets/icons/exercise_darkmode.png'),
           trailingIcon: Image.asset('assets/icons/open_darkmode.png'),
           onTap: () {

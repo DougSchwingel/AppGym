@@ -87,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * 0.75, 50)),
                   onPressed: () async {
-                    await ExerciseDAO.deletar();
-                    ExerciseDAO.inserir();
+                    await ExerciseDAO.delete();
+                    ExerciseDAO.insert();
                     Navigator.pushNamed(context, '/MainPage');
                   },
                   child: _isLoading

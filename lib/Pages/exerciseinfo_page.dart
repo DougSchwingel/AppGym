@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/Classes/exercicio_classe.dart';
+import 'package:gym_app/Classes/exercicio_class.dart';
 import 'package:gym_app/PreparedWidgets/return_button.dart';
 import 'package:gym_app/PreparedWidgets/topbar.dart';
 
 class ExerciseInfo extends StatefulWidget {
   const ExerciseInfo({Key? key, required this.exercicioInfo}) : super(key: key);
 
-  final Exercicio exercicioInfo;
+  final Exercise exercicioInfo;
 
   @override
   State<ExerciseInfo> createState() => _ExerciseInfoState();

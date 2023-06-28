@@ -40,7 +40,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
     for (String bodypart in bodyparts) {
       bParts.add(
         ExercisesCard(
-          nome: bodypart,
+          nome: bodypart.toUpperCase(),
           icone: Image.asset('assets/icons/exercise_darkmode.png'),
           trailingIcon: Image.asset('assets/icons/open_darkmode.png'),
           onTap: () {

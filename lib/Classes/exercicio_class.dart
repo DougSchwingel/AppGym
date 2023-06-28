@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class Exercicio {
+class Exercise {
   final String bodyPart;
   final String equipment;
   final String gifUrl;
   final String id;
   final String name;
   final String target;
-  Exercicio({
+  Exercise({
     required this.bodyPart,
     required this.equipment,
     required this.gifUrl,
@@ -16,7 +16,7 @@ class Exercicio {
     required this.target,
   });
 
-  Exercicio copyWith({
+  Exercise copyWith({
     String? bodyPart,
     String? equipment,
     String? gifUrl,
@@ -24,7 +24,7 @@ class Exercicio {
     String? name,
     String? target,
   }) {
-    return Exercicio(
+    return Exercise(
       bodyPart: bodyPart ?? this.bodyPart,
       equipment: equipment ?? this.equipment,
       gifUrl: gifUrl ?? this.gifUrl,
@@ -45,8 +45,8 @@ class Exercicio {
     };
   }
 
-  factory Exercicio.fromMap(Map<String, dynamic> map) {
-    return Exercicio(
+  factory Exercise.fromMap(Map<String, dynamic> map) {
+    return Exercise(
       bodyPart: map['bodyPart'] as String,
       equipment: map['equipment'] as String,
       gifUrl: map['gifUrl'] as String,
@@ -58,8 +58,8 @@ class Exercicio {
 
   String toJson() => json.encode(toMap());
 
-  factory Exercicio.fromJson(String source) =>
-      Exercicio.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Exercise.fromJson(String source) =>
+      Exercise.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -67,7 +67,7 @@ class Exercicio {
   }
 
   @override
-  bool operator ==(covariant Exercicio other) {
+  bool operator ==(covariant Exercise other) {
     if (identical(this, other)) return true;
 
     return other.bodyPart == bodyPart &&

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:gym_app/Classes/exercicio_classe.dart';
+import 'package:gym_app/Classes/exercicio_class.dart';
 
 class DioClient {
-  static Future<List<Exercicio>> getExercises() async {
+  static Future<List<Exercise>> getExercises() async {
     final Dio dio = Dio();
 
     final response = await dio.get(
@@ -15,8 +15,8 @@ class DioClient {
 
     List<dynamic> exerciseList = response.data;
 
-    List<Exercicio> exercicios = exerciseList
-        .map((mapExercicio) => Exercicio.fromMap(mapExercicio))
+    List<Exercise> exercicios = exerciseList
+        .map((mapExercicio) => Exercise.fromMap(mapExercicio))
         .toList();
     return exercicios;
   }

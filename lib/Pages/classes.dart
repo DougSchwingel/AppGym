@@ -41,8 +41,7 @@ class _ClassPageState extends State<ClassPage> {
                 aulasFuturas: _aulasFuturas,
                 onDaySelected: _handleDaySelected,
                 onAulasFuturasChanged: () {
-                  setState(
-                      () {}); // Notifica a mudança para reconstruir a lista
+                  setState(() {});
                 },
               ),
               Expanded(

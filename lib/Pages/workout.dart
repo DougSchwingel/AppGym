@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/BD/profile_dao.dart';
+import 'package:gym_app/BD/workout_dao.dart';
+import 'package:gym_app/Pages/build_workout.dart';
 import 'package:gym_app/PreparedWidgets/searchbar.dart';
 import 'package:gym_app/PreparedWidgets/workout_card.dart';
 
@@ -11,10 +12,26 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
+  @override
+  void initState() {
+    super.initState();
+    loadWorkouts();
+  }
+
   List<WorkoutCard> treinos = [];
   int i = 0;
   TextEditingController _searchController = TextEditingController();
   bool isSearchVisible = false;
+  List<WorkoutCard> Workouts = [];
+
+  Future<void> loadWorkouts() async {
+    List<WorkoutCard> lW = await WorkoutDAO.loadWorkouts();
+
+    for (var element in lW) {
+      Workouts.add(element);
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,44 +56,58 @@ class _WorkoutPageState extends State<WorkoutPage> {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: treinos.length,
+                  itemCount: Workouts.length,
                   itemBuilder: (context, index) {
-                    return treinos[index];
+                    return Workouts[index];
                   },
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.06,
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                      const Color.fromARGB(255, 255, 152, 0),
+                height: MediaQuery.of(context).size.height * 0.12,
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 255, 152, 0),
+                        ),
+                      ),
+                      onPressed: () async {
+                        final updatedWorkouts = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BuildWorkout(
+                              onUpdateWorkouts: (newWorkouts) {
+                                setState(() {
+                                  Workouts = newWorkouts;
+                                });
+                              },
+                            ),
+                          ),
+                        );
+
+                        if (updatedWorkouts != null) {
+                          setState(() {
+                            Workouts = updatedWorkouts;
+                          });
+                        }
+                      },
+                      child: const Text(
+                        'Criar Treino',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    ProfileDAO.printarPesos;
-                    setState(() {
-                      treinos.add(
-                        WorkoutCard(
-                            nome: 'Treino $i',
-                            info: 'Body Part',
-                            icone: Image.asset(
-                                'assets/icons/workout_darkmode.png'),
-                            trailingIcon:
-                                Image.asset('assets/icons/open_darkmode.png')),
-                      );
-                      i++;
-                    });
-                  },
-                  child: const Text(
-                    'Criar Treino',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
+                    ElevatedButton(
+                        onPressed: () {
+                          loadWorkouts();
+                        },
+                        child: Icon(Icons.refresh))
+                  ],
                 ),
               ),
             ],

@@ -3,7 +3,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:gym_app/BD/profile_dao.dart';
-import 'package:gym_app/Classes/profile_info.dart';
+import 'package:gym_app/Classes/profile_info_class.dart';
 import 'package:gym_app/PreparedWidgets/evolution_chart.dart';
 
 class EvolutionPage extends StatefulWidget {
@@ -65,6 +65,9 @@ class _EvolutionPageState extends State<EvolutionPage> {
           EvolutionChart(
             data: pesos,
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.2,
+          )
         ],
       ),
     );
