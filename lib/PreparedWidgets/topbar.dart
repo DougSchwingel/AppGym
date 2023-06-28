@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TopBar extends StatefulWidget implements PreferredSizeWidget {
+  final IconButton? returnButton;
   final String title;
-  const TopBar({Key? key, required this.title}) : super(key: key);
+  const TopBar({Key? key, required this.title, this.returnButton})
+      : super(key: key);
 
   @override
   State<TopBar> createState() => _TopBarState();
@@ -16,10 +18,7 @@ class _TopBarState extends State<TopBar> {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      leading: InkWell(
-        child: const Icon(Icons.menu),
-        onTap: () {},
-      ),
+      leading: widget.returnButton != null ? widget.returnButton : Container(),
       title: Text(widget.title),
       centerTitle: true,
       actions: [

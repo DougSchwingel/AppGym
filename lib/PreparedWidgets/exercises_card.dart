@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/Pages/exercises_bp.dart';
 
 class ExercisesCard extends StatefulWidget {
   const ExercisesCard({

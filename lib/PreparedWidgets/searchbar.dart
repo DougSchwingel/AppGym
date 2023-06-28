@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
-class SearchBar extends StatefulWidget {
-  const SearchBar({super.key, required this.controller, required this.texto});
+class GymSearchBar extends StatefulWidget {
+  const GymSearchBar(
+      {super.key, required this.controller, required this.texto});
 
   final TextEditingController controller;
   final String texto;
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<GymSearchBar> createState() => _GymSearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _GymSearchBarState extends State<GymSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(

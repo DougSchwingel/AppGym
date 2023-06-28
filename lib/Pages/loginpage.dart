@@ -1,7 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:gym_app/BD/dio_client.dart';
 import 'package:gym_app/BD/exercises_dao.dart';
+import 'package:gym_app/BD/profile_dao.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

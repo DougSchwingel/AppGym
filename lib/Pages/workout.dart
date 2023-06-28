@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/BD/profile_dao.dart';
 import 'package:gym_app/PreparedWidgets/searchbar.dart';
 import 'package:gym_app/PreparedWidgets/workout_card.dart';
 
@@ -30,7 +31,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                child: SearchBar(
+                child: GymSearchBar(
                   texto: 'Procurar Treinos',
                   controller: _searchController,
                 ),
@@ -54,6 +55,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                     ),
                   ),
                   onPressed: () {
+                    ProfileDAO.printarPesos;
                     setState(() {
                       treinos.add(
                         WorkoutCard(

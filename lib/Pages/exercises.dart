@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/BD/db_helper.dart';
-import 'package:gym_app/BD/exercises_dao.dart';
 import 'package:gym_app/PreparedWidgets/exercises_card.dart';
 import 'package:gym_app/PreparedWidgets/exercises_selector.dart';
 import 'package:gym_app/PreparedWidgets/searchbar.dart';
@@ -83,7 +82,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SearchBar(
+                        GymSearchBar(
                           texto: 'Procurar Exercícios',
                           controller: _searchController,
                         ),

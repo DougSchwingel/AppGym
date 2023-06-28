@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:gym_app/BD/list_exercises.dart';
 import 'package:gym_app/Classes/exercicio_classe.dart';
 
 class DioClient {

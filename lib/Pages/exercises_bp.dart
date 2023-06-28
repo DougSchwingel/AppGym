@@ -3,6 +3,7 @@ import 'package:gym_app/BD/exercises_dao.dart';
 import 'package:gym_app/Classes/exercicio_classe.dart';
 import 'package:gym_app/Pages/exerciseinfo_page.dart';
 import 'package:gym_app/PreparedWidgets/exercises_card.dart';
+import 'package:gym_app/PreparedWidgets/return_button.dart';
 import 'package:gym_app/PreparedWidgets/searchbar.dart';
 import 'package:gym_app/PreparedWidgets/topbar.dart';
 
@@ -63,13 +64,16 @@ class _ExercisesBPState extends State<ExercisesBP> {
         }
       },
       child: Scaffold(
-        appBar: const TopBar(title: 'Gym Name'),
+        appBar: const TopBar(
+          title: 'Gym Name',
+          returnButton: ReturnButtonApp(),
+        ),
         body: Center(
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                child: SearchBar(
+                child: GymSearchBar(
                   texto: 'Procurar Exercício',
                   controller: _searchController,
                 ),
