@@ -1,21 +1,20 @@
-# gym_app
+# GymApp 💪
 
-A new Flutter project.
+![https://img.shields.io/badge/:badgeContent](https://img.shields.io/badge/Flutter-Mobile-02569B?logo=flutter&style=for-the-badge) ![https://img.shields.io/badge/:badgeContent](https://img.shields.io/badge/MySQL-DATABASE-4479A1?logo=MySQL&style=for-the-badge&logoColor=ffffff) ![https://img.shields.io/badge/:badgeContent](https://img.shields.io/badge/STATUS-EM%20ANDAMENTO-FF9E0F?&style=for-the-badge)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Projeto de Aplicação Mobile de Exercícios e Treinos de Academia
+## Sobre
+Este projeto foi realizado para um maior aprofundamento dos conhecimentos em Flutter para desenvolvimento mobile
 
-A few resources to get you started if this is your first Flutter project:
+## Atualizações Necessárias
+Planejo atualizar este projeto com os seguintes itens:
+ - Correção de erros de layout e screen overflow
+ - Comunicação com API de exercicios
+ - Página de Login e Cadastro funcional
+ - Comunicação com Banco de Dados MySQL
+ - Autenticação de Usuário
+ - Inclusão de Telas de Receitas
+ - Comunicação com API de Receitas
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# GymApp
-# DougShcwingel
-# DougSchwingel
-# DougSchwingel
-# AppGym
+Assim que possível atualizarei este projeto e informarei neste README as novas funcionalidades.
